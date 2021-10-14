@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:flowable="http://flowable.org/bpmn"
+             xmlns:umflowable="http://www.unionman.com.cn/flowable/extend/flowableAttribute"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             typeLanguage="http://www.w3.org/2001/XMLSchema"
+             expressionLanguage="http://www.w3.org/1999/XPath"
+             targetNamespace="http://www.flowable.org/processdef">
+  <process id="testListener" name="测试监听器" isExecutable="true">
+    <startEvent id="startEvent1" flowable:formFieldValidation="true"></startEvent>
+    <userTask id="sid-0E05D3A7-F3A9-41AD-8E3A-EFC3C072CE62" name="副经理审核" flowable:candidateGroups="3" umflowable:candidateType="organizationRole"
+              flowable:formFieldValidation="true" umflowable:candidateNotifyType="superior">
+    </userTask>
+    <sequenceFlow id="sid-AF7722F5-0716-4222-9BB0-79C99DB1386F" sourceRef="startEvent1" targetRef="sid-0E05D3A7-F3A9-41AD-8E3A-EFC3C072CE62"></sequenceFlow>
+    <sequenceFlow id="sid-576606BB-D7D4-40C0-A9CD-4B17FE8549BC" sourceRef="sid-0E05D3A7-F3A9-41AD-8E3A-EFC3C072CE62" targetRef="sid-9922057C-C8BD-4BEF-8DF4-C6413FC7B006"></sequenceFlow>
+    <endEvent id="sid-D826AA47-59B7-4540-AB3E-F32388F9D7DE"></endEvent>
+    <sequenceFlow id="sid-98363296-58F9-44FA-8444-1DFF9F4A0084" sourceRef="sid-9922057C-C8BD-4BEF-8DF4-C6413FC7B006" targetRef="sid-D826AA47-59B7-4540-AB3E-F32388F9D7DE"></sequenceFlow>
+    <userTask id="sid-9922057C-C8BD-4BEF-8DF4-C6413FC7B006" name="总经理审核" flowable:candidateGroups="4" umflowable:candidateType="organizationRole"
+              flowable:formFieldValidation="true" umflowable:candidateNotifyType="organizationRole" umflowable:candidateNotifyGroups="5,6">
+    </userTask>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_testListener">
+    <bpmndi:BPMNPlane bpmnElement="testListener" id="BPMNPlane_testListener">
+      <bpmndi:BPMNShape bpmnElement="startEvent1" id="BPMNShape_startEvent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="195.0" y="90.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-0E05D3A7-F3A9-41AD-8E3A-EFC3C072CE62" id="BPMNShape_sid-0E05D3A7-F3A9-41AD-8E3A-EFC3C072CE62">
+        <omgdc:Bounds height="80.0" width="100.0" x="270.0" y="65.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-D826AA47-59B7-4540-AB3E-F32388F9D7DE" id="BPMNShape_sid-D826AA47-59B7-4540-AB3E-F32388F9D7DE">
+        <omgdc:Bounds height="28.0" width="28.0" x="560.0" y="91.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-9922057C-C8BD-4BEF-8DF4-C6413FC7B006" id="BPMNShape_sid-9922057C-C8BD-4BEF-8DF4-C6413FC7B006">
+        <omgdc:Bounds height="80.0" width="100.0" x="415.0" y="65.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-576606BB-D7D4-40C0-A9CD-4B17FE8549BC" id="BPMNEdge_sid-576606BB-D7D4-40C0-A9CD-4B17FE8549BC">
+        <omgdi:waypoint x="369.95000000000005" y="105.0"></omgdi:waypoint>
+        <omgdi:waypoint x="415.0" y="105.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-AF7722F5-0716-4222-9BB0-79C99DB1386F" id="BPMNEdge_sid-AF7722F5-0716-4222-9BB0-79C99DB1386F">
+        <omgdi:waypoint x="224.94999848995764" y="105.0"></omgdi:waypoint>
+        <omgdi:waypoint x="270.0" y="105.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-98363296-58F9-44FA-8444-1DFF9F4A0084" id="BPMNEdge_sid-98363296-58F9-44FA-8444-1DFF9F4A0084">
+        <omgdi:waypoint x="514.9499999999791" y="105.0"></omgdi:waypoint>
+        <omgdi:waypoint x="560.0" y="105.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

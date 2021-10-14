@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <springProperty scope="context" name="logging.path"  source="logging.file.path"/>
+    <springProperty scope="context" name="logging.level"  source="logging.level.com.um.server"/>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss}][%p][%c{40}][%t] %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="mainapd" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${logging.path}/basecli.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logging.path}/itbase.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%p][%c{40}][%t] %m%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${logging.level}</level>
+        </filter>
+    </appender>
+
+    <appender name="errorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logging.path}/error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logging.path}/error.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%p][%c{40}][%t] %m%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    <!--项目日志-->
+    <logger name="com.um.server" additivity="false" level="${logging.level}" >
+        <appender-ref ref="console"/>
+        <appender-ref ref="mainapd"/>
+        <appender-ref ref="errorAppender"/>
+    </logger>
+
+    <logger name="com.hikvision.artemis" additivity="false" level="ERROR"></logger>
+
+    <!--其他日志，正式部署的时候使用 INFO 级别-->
+<!--    <root level="DEBUG">-->
+<!--        <appender-ref ref="console"/>-->
+<!--        <appender-ref ref="mainapd"/>-->
+<!--    </root>-->
+
+    <root level="INFO">
+        <appender-ref ref="console"/>
+        <appender-ref ref="mainapd"/>
+    </root>
+
+</configuration>

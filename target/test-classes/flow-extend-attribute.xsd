@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+        xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:flowable="http://flowable.org/bpmn"
+        targetNamespace="http://www.unionman.com.cn/flowable/extend/flowableAttribute"
+        elementFormDefault="qualified">
+
+    <import namespace="http://www.omg.org/spec/BPMN/20100524/MODEL" />
+
+    <!--flowable自定义拓展-->
+    <attribute name="candidateType">
+        <annotation>
+            <documentation>
+                用于用户任务节点
+                此属性标识候选人类型 属于自定义属性
+                在使用时必须配合 flowable:candidateGroups|candidateUsers
+                后台在人员分配前进行解析
+            </documentation>
+        </annotation>
+        <simpleType>
+            <restriction base="string">
+                <enumeration value="superior" />
+                <enumeration value="organizationRole" />
+                <enumeration value="position" />
+                <enumeration value="role" />
+                <enumeration value="departmentLeader" />
+                <enumeration value="selfDepartmentLeader" />
+            </restriction>
+        </simpleType>
+    </attribute>
+
+
+    <attribute name="candidateNotifyType">
+        <annotation>
+            <documentation>
+                用于用户任务节点
+                此属性标识抄送人类型 属于自定义属性
+                在使用时必须配合 flowable:candidateGroups|candidateUsers
+                后台在抄送人员分配前进行解析
+            </documentation>
+        </annotation>
+        <simpleType>
+            <restriction base="string">
+                <enumeration value="superior" />
+                <enumeration value="organizationRole" />
+                <enumeration value="position" />
+                <enumeration value="role" />
+                <enumeration value="departmentLeader" />
+                <enumeration value="selfDepartmentLeader" />
+            </restriction>
+        </simpleType>
+    </attribute>
+
+
+    <attribute name="candidateNotifyGroups">
+        <annotation>
+            <documentation>
+                用于用户任务节点
+                此属性标识抄送人类型 属于自定义属性
+                在使用时必须配合 flowable:candidateGroups|candidateUsers
+                后台在抄送人员分配前进行解析
+            </documentation>
+        </annotation>
+    </attribute>
+
+
+    <attribute name="isNoIdentitySkip" type="boolean">
+        <annotation>
+            <documentation>
+                用于用户任务节点
+                此属性标识找不到审核人是否可以自动跳过
+            </documentation>
+        </annotation>
+    </attribute>
+
+
+    <attribute name="isSameAssignementSkip">
+        <annotation>
+            <documentation>
+                用于用户任务节点
+                此属性标识当前用户节点的候选人
+                已经参与过之前的用户节点的审核
+                是否可以自动跳过
+            </documentation>
+        </annotation>
+        <simpleType>
+            <restriction base="boolean">
+                <enumeration value="true" />
+                <enumeration value="false" />
+            </restriction>
+        </simpleType>
+    </attribute>
+
+
+    <attribute name="isAddSign">
+        <annotation>
+            <documentation>
+                用于用户任务节点
+                此属性标识当前用户节点是否可以会签 前加签 后加签
+            </documentation>
+        </annotation>
+        <simpleType>
+            <restriction base="boolean">
+                <enumeration value="true" />
+                <enumeration value="false" />
+            </restriction>
+        </simpleType>
+    </attribute>
+
+
+    <attribute name="isDelegate">
+        <annotation>
+            <documentation>
+                用于用户任务节点
+                此属性标识当前用户节点是否可以委托
+            </documentation>
+        </annotation>
+        <simpleType>
+            <restriction base="boolean">
+                <enumeration value="true" />
+                <enumeration value="false" />
+            </restriction>
+        </simpleType>
+    </attribute>
+
+</schema>
+
+
+<!--之前的配置-->
+<!--<xsd:schema elementFormDefault="qualified" attributeFormDefault="unqualified"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+            xmlns:flowable="http://flowable.org/bpmn"
+            targetNamespace="http://www.unionman.com.cn/flowable/extend/assignmentType">
+
+    &lt;!&ndash;flowable自定义拓展&ndash;&gt;
+
+    <xsd:attribute name="candidateType">
+        <xsd:annotation>
+            <xsd:documentation>
+                此属性标识分配人类型 属于自定义属性
+                在使用时必须有flowable:candidateGroups|candidateUsers
+                后台在人员分配前进行解析
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:enumeration value="superior" />
+                <xsd:enumeration value="organizationRole" />
+                <xsd:enumeration value="position" />
+                <xsd:enumeration value="role" />
+            </xsd:restriction>
+        </xsd:simpleType>
+
+    </xsd:attribute>
+
+</xsd:schema>-->
